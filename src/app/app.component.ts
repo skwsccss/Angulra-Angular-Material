@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   categ = '';
 
   // datasource = '';
+  disp = false;
   filteredData = [];
   displayedColumns = ['author', 'company', 'issuedDate', 'updatedDate','edit', 'delete'];
   // dataSource = data;
@@ -34,6 +35,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.filteredData = [];
     console.log(this.filteredData);
+    this.disp= false;
   }
 
   strtodate(d) {
@@ -43,7 +45,9 @@ export class AppComponent implements OnInit {
   
     
   
-  
+  display(){
+    this.disp = !this.disp;
+  }
   
   clearRow1() {
     this.issuedAtFrom = '';

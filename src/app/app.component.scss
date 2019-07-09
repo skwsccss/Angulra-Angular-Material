@@ -7,3 +7,21 @@
     width: 100%;
   }
   
+  .example-icon {
+    padding: 0 0px;
+  }
+  
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+  .example-card {
+    max-width: 400px;
+    background-color: azure;
+  }
+  mat-form-field {
+    margin: 20px;
+  }
+  .example-card mat-form-field {
+    width: 90%;
+  }
+  

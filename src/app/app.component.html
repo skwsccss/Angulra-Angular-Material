@@ -1,10 +1,52 @@
 <div class="sidenav-container">
   <mat-toolbar color="primary">
-    <span>List of articles</span>
+    <mat-toolbar-row>
+      <span>List of articles</span>
+      <span class="example-spacer"></span>
+
+      <mat-form-field fxFlex>
+        <input matInput type="text" placeholder="Search">
+      </mat-form-field>
+      <mat-icon class="example-icon" aria-hidden="true" aria-label="Example heart icon">search</mat-icon>
+      <button mat-button class="example-icon" aria-hidden="false" aria-label="Example delete icon" (click)="display()">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+
+    </mat-toolbar-row>
+    <!-- <span>List of articles</span> -->
   </mat-toolbar>
+  <div class="example-card" *ngIf="disp" style="margin-left: 20px;">
+    <div class="row">
+      <mat-form-field>
+        <input type="" matInput placeholder="input">
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field>
+        <input type="" matInput placeholder="input">
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field>
+        <mat-select placeholder="select">
+          <mat-option value = "1">option1</mat-option>
+          <mat-option value = "2">option2</mat-option>
+          <mat-option value = "3">option3</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field>
+        <input type="" matInput placeholder="input">
+      </mat-form-field>
+    </div>
+
+
+  </div>
   <div fxLayout="column" class="form-container" fxLayoutAlign="space-around space-around" fxLayoutGap="5px">
     <div class="note-search-form-container">
       <!--inputs and buttons-->
+
       <div fxLayout="row" fxLayoutAlign="space-around" fxLayoutGap="25px">
         <!--search components-->
         <div fxFlex="65" class="note-search-inputs">
@@ -48,7 +90,7 @@
                   <mat-datepicker #noteIssuedTo></mat-datepicker>
                 </mat-form-field>
                 <div fxFlex="10%" fxLayoutAlign="center center">
-                  <button mat-button color="warn" fxLayoutAlign="center center" (click)="clearRow1()">
+                  <button mat-raised-button color="warn" fxLayoutAlign="center center" (click)="clearRow1()">
                     <mat-icon aria-label="clear_pub_date">clear</mat-icon>
                     <span>Clear</span>
                   </button>
@@ -73,7 +115,7 @@
                   <mat-datepicker #noteUpdatedTo></mat-datepicker>
                 </mat-form-field>
                 <div fxFlex="10%" fxLayoutAlign="center center">
-                  <button mat-button color="default" fxLayoutAlign="center center" (click)="clearRow2()">
+                  <button mat-raised-button color="warn" fxLayoutAlign="center center" (click)="clearRow2()">
                     <mat-icon aria-label="clear_up_date">clear</mat-icon>
                     <span>Clear</span>
                   </button>
@@ -88,16 +130,16 @@
             <div fxFlex>
               <div fxLayout="row" fxFlexFill fxLayoutAlign="space-around space-around" fxLayoutGap="20px">
                 <div fxFlex="45" fxFlexFill fxLayoutAlign="center center">
-                  <button fxFlexFill mat-raised-button color="default" (click)="Search()">
+                  <button mat-raised-button color="primary" (click)="Search()">
                     Search for
                   </button>
                 </div>
-                <div fxFlex="45" fxFlexFill fxLayoutAlign="center center">
+                <!-- <div fxFlex="45" fxFlexFill fxLayoutAlign="center center">
                   <button fxFlexFill fxLayoutAlign="center center" mat-raised-button color="accent">
                     <span>Batch JSON export
                     </span>
                   </button>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -105,67 +147,67 @@
       </div>
     </div>
     <div fxFlex class="note-master-content">
-        <div class="example-container mat-elevation-z8">
-            <table mat-table [dataSource]="filteredData">
-          
-              <!-- Position Column -->
-              <ng-container matColumnDef="author">
-                <th mat-header-cell *matHeaderCellDef> Author </th>
-                <td mat-cell *matCellDef="let element"> {{element.author}} </td>
-              </ng-container>
-          
-              <!-- Name Column -->
-              <ng-container matColumnDef="company">
-                <th mat-header-cell *matHeaderCellDef> Company </th>
-                <td mat-cell *matCellDef="let element"> {{element.company}} </td>
-              </ng-container>
-          
-              <!-- Weight Column -->
-              <ng-container matColumnDef="issuedDate">
-                <th mat-header-cell *matHeaderCellDef> Issued Date </th>
-                <td mat-cell *matCellDef="let element"> {{element.issuedDate}} </td>
-              </ng-container>
-          
-              <!-- Symbol Column -->
-              <ng-container matColumnDef="updatedDate">
-                <th mat-header-cell *matHeaderCellDef> Updated Date </th>
-                <td mat-cell *matCellDef="let element"> {{element.updatedDate}} </td>
-              </ng-container>
+      <div class="example-container mat-elevation-z8">
+        <table mat-table [dataSource]="filteredData">
 
-              <ng-container matColumnDef="edit">
-                  <th mat-header-cell *matHeaderCellDef>Edit</th>
-                  <td mat-cell *matCellDef="let element">
-                    <button mat-icon-button color="primary">
-                      <mat-icon color="primary">edit</mat-icon>
-                    </button>
-                  </td>
-              </ng-container>
-              <ng-container matColumnDef="delete">
-                <th mat-header-cell *matHeaderCellDef>Delete</th>
-                <td mat-cell *matCellDef="let element">
-                  <button mat-icon-button color="warn">
-                    <mat-icon color="warn">delete_forever</mat-icon>
-                  </button>
-                </td>
-              </ng-container>
-              <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            </table>
+          <!-- Position Column -->
+          <ng-container matColumnDef="author">
+            <th mat-header-cell *matHeaderCellDef> Author </th>
+            <td mat-cell *matCellDef="let element"> {{element.author}} </td>
+          </ng-container>
 
-            <div *ngIf="lastEvaluatedKey" fxFlexFill fxLayoutAlign="center center">
-                <button fxFlexFill mat-button color="basic" (click)="getUsers(lastEvaluatedKey)">
-                  <mat-icon>expand_more</mat-icon>
-                  Read more
-                </button>
-            </div>
+          <!-- Name Column -->
+          <ng-container matColumnDef="company">
+            <th mat-header-cell *matHeaderCellDef> Company </th>
+            <td mat-cell *matCellDef="let element"> {{element.company}} </td>
+          </ng-container>
 
-          </div>
-    </div> 
+          <!-- Weight Column -->
+          <ng-container matColumnDef="issuedDate">
+            <th mat-header-cell *matHeaderCellDef> Issued Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.issuedDate}} </td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="updatedDate">
+            <th mat-header-cell *matHeaderCellDef> Updated Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.updatedDate}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef>Edit</th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-icon-button color="primary">
+                <mat-icon color="primary">edit</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef>Delete</th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-icon-button color="warn">
+                <mat-icon color="warn">delete_forever</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <div *ngIf="lastEvaluatedKey" fxFlexFill fxLayoutAlign="center center">
+          <button fxFlexFill mat-button color="basic" (click)="getUsers(lastEvaluatedKey)">
+            <mat-icon>expand_more</mat-icon>
+            Read more
+          </button>
+        </div>
+
+      </div>
+    </div>
   </div>
 </div>
 
 <!-- search and result-->
-      <!-- <div fxLayout="column" fxLayoutAlign="space-around space-around" fxLayoutGap="5px">
+<!-- <div fxLayout="column" fxLayoutAlign="space-around space-around" fxLayoutGap="5px">
         <div fxFlex class="result-table-container">
           <div fxFlexFill class="mat-elevation-z8">
             <table fxFlexFill mat-table [dataSource]="filteredData">
@@ -185,8 +227,8 @@
                 <th mat-header-cell *matHeaderCellDef>Updated date</th>
                 <td mat-cell *matCellDef="let element"> {{toJst(element.updatedDate) || '-'}}</td>
               </ng-container> -->
-              <!-- Edit Column -->
-              <!-- <ng-container matColumnDef="edit">
+<!-- Edit Column -->
+<!-- <ng-container matColumnDef="edit">
                 <th mat-header-cell *matHeaderCellDef>Edit</th>
                 <td mat-cell *matCellDef="let element">
                   <button mat-icon-button color="primary">
@@ -194,8 +236,8 @@
                   </button>
                 </td>
               </ng-container> -->
-              <!-- Delete Column -->
-              <!-- <ng-container matColumnDef="delete">
+<!-- Delete Column -->
+<!-- <ng-container matColumnDef="delete">
                 <th mat-header-cell *matHeaderCellDef>Delete</th>
                 <td mat-cell *matCellDef="let element">
                   <button mat-icon-button color="warn">
